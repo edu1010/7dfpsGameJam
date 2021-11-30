@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 
     //gravedad
     public float m_VerticalSpeed = 0.0f;
+    public float m_HorizontalSpeed = 0.0f;
     float m_OldVerticalSpeed = 0.0f;//verticalSpeed de hace un frame
     public bool m_OnGround = false;
     private bool m_isJumping;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
     public KeyCode m_JumpKeyCode = KeyCode.Space;
     public float m_FastSpeedMultiplier = 1.2f;
     public float m_JumpSpeed = 10.0f;
+    public float m_JumpWallSpeed = 2.0f;
     float m_time = 0.0f;
     public float m_GravityMultiplayer = 1.2f;
     public float m_MAxGravityMultiplayer = 4f;
@@ -107,7 +109,17 @@ public class Player : MonoBehaviour
         //v = v0 +a*t
         m_VerticalSpeed += Physics.gravity.y * Time.deltaTime * (m_IncreaseGravity ? m_GravityMultiplayer : 1.0f);
         l_Movement.y = m_VerticalSpeed * Time.deltaTime;
-
+        if (m_HorizontalSpeed != 0)
+        {
+            m_HorizontalSpeed -= m_friction;
+            if(m_HorizontalSpeed < 0)
+            {
+                m_HorizontalSpeed = 0.1f;
+            }
+            m_dir = l_Forward + m_WallRun.WallJump();
+            m_dir.Normalize();
+            l_Movement += m_dir * m_HorizontalSpeed;
+        }
 
         //comprobamos si estamos corriendo
         float l_SpeedMultiplier = 1.0f;
@@ -124,6 +136,7 @@ public class Player : MonoBehaviour
             if (!m_WallRun.m_IsWallRunning)
                 m_isJumping = false;
             m_VerticalSpeed = 0.0f;
+            m_HorizontalSpeed = 0.0f;
             m_time = Time.time;
         }
         else
@@ -139,10 +152,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(m_JumpKeyCode))
         {
-            if (m_OnGround)
-            {
-                Debug.Log("salta");
+            if (m_OnGround || m_WallRun.m_IsWallRunning)
+            {   
                 m_VerticalSpeed = m_JumpSpeed;
+                if (m_WallRun.m_IsWallRunning){
+                    m_HorizontalSpeed = m_JumpWallSpeed;
+                }
             }
             m_isJumping = true;
         }
