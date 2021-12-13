@@ -12,13 +12,13 @@ public class WallRun : MonoBehaviour
         Vector3.left+Vector3.forward,
         Vector3.left
     };
-    public float m_WallJumpSpeed=20;
+    
     RaycastHit[] hits;
     public bool m_IsWallRunning;
     bool m_WasWallRunning;
     public float m_IsWallDistance;
     public LayerMask m_WhatIsWallRun;
-    //public FPSPlayerController m_FPSPlayer;
+    public float m_GravityInTheWall = 0.2f;
     public Player m_FPSPlayer;
     Vector3 m_lastWallNormal;
     Quaternion m_targetRotation;
@@ -73,8 +73,8 @@ public class WallRun : MonoBehaviour
                     Debug.DrawRay(transform.position, dir * hits[i].distance, Color.green);
                     RotatePlayer(m_directions[i]);
                     m_lastWallNormal = hits[i].normal;
-                    m_FPSPlayer.m_GravityMultiplayer = 0.2f;
-                    if(!m_WasWallRunning && m_IsWallRunning)
+                    m_FPSPlayer.m_GravityMultiplayer = m_GravityInTheWall;
+                    if (!m_WasWallRunning && m_IsWallRunning)
                     {
                         m_FPSPlayer.m_VerticalSpeed = 0;
                     }
@@ -98,20 +98,16 @@ public class WallRun : MonoBehaviour
             {
                 ResetPlayerRotatation();
             }
-            if (Input.GetKeyDown(m_FPSPlayer.m_JumpKeyCode))
-            {
-               // WallJump();
-            }
 
         }
-        else    { 
+        else 
+        { 
             ResetPlayerRotatation();
             m_FPSPlayer.m_GravityMultiplayer = m_FPSPlayer.m_MAxGravityMultiplayer;
             m_IsWallRunning = false;
         }
         if(m_PitchControllerTransform.localRotation != m_targetRotation)
         {
-            
             m_PitchControllerTransform.localRotation = Quaternion.Lerp(m_PitchControllerTransform.localRotation, m_targetRotation, 0.05f);
         }
         
@@ -119,8 +115,6 @@ public class WallRun : MonoBehaviour
     }
     public Vector3 WallJump()//Enviamos la normal de la última pared para el salto
     {
-        float l_MovementX = m_lastWallNormal.x ;
-        //m_FPSPlayer.m_CharacterController.Move(l_Movement);
         return m_lastWallNormal;
     }
     bool CanWallRun()
@@ -132,14 +126,11 @@ public class WallRun : MonoBehaviour
         if (dir == Vector3.left)
         {
             m_targetRotation = Quaternion.Euler(m_PitchControllerTransform.localRotation.eulerAngles.x, 0.0f, -30);
-           
-           
         }
         if (dir == Vector3.right)
         {
             m_targetRotation = Quaternion.Euler(m_PitchControllerTransform.localRotation.eulerAngles.x, 0.0f, 30);
         }
-
     }
     void ResetPlayerRotatation()
     {
