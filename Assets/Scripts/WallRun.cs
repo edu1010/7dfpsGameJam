@@ -38,7 +38,7 @@ public class WallRun : MonoBehaviour
         }
         else if(isGrounded())
         {
-            m_FPSPlayer.m_IsWallJumping = false;
+            m_FPSPlayer.m_IsWallRun = false;
             timer = 0f;
         }
         if (m_IsWallRunning)
@@ -67,13 +67,12 @@ public class WallRun : MonoBehaviour
             {
                 //Ponemos la direcion en global
                 Vector3 dir = transform.TransformDirection(m_directions[i]);
-                Physics.Raycast(transform.position, dir, out hits[i], m_IsWallDistance, m_WhatIsWallRun);
+                Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), dir, out hits[i], m_IsWallDistance, m_WhatIsWallRun);
                 if (hits[i].collider != null)
                 {
-                    Debug.DrawRay(transform.position, dir * hits[i].distance, Color.green);
+                    Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), dir * hits[i].distance, Color.green);
                     RotatePlayer(m_directions[i]);
                     m_lastWallNormal = hits[i].normal;
-                    m_FPSPlayer.m_GravityMultiplayer = m_GravityInTheWall;
                     if (!m_WasWallRunning && m_IsWallRunning)
                     {
                         m_FPSPlayer.m_VerticalSpeed = 0;
@@ -82,7 +81,7 @@ public class WallRun : MonoBehaviour
                 }
                 else
                 {
-                    Debug.DrawRay(transform.position, dir * m_IsWallDistance, Color.red);
+                    Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), dir * m_IsWallDistance, Color.red);
                 }
             }
             m_IsWallRunning = l_IsWallRunning;
@@ -123,6 +122,8 @@ public class WallRun : MonoBehaviour
     }
     void RotatePlayer(Vector3 dir)
     {
+        m_FPSPlayer.m_IsWallRun = true;
+        m_FPSPlayer.m_GravityMultiplayer = m_GravityInTheWall;
         if (dir == Vector3.left)
         {
             m_targetRotation = Quaternion.Euler(m_PitchControllerTransform.localRotation.eulerAngles.x, 0.0f, -30);
@@ -134,6 +135,7 @@ public class WallRun : MonoBehaviour
     }
     void ResetPlayerRotatation()
     {
+        m_FPSPlayer.m_IsWallRun = false;
         m_targetRotation = Quaternion.Euler(m_PitchControllerTransform.localRotation.eulerAngles.x, 0.0f, 0.0f);
         m_FPSPlayer.m_GravityMultiplayer=m_FPSPlayer.m_MAxGravityMultiplayer;
     }
