@@ -1105,6 +1105,7 @@ MonoBehaviour:
     m_Bits: 129
   m_GravityInTheWall: 0.2
   m_FPSPlayer: {fileID: 761618207}
+  m_TimeToRotate: 2
 --- !u!1 &893399377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1207,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16470
+  m_Name: pb_Mesh16484
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2181,7 +2182,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16388
+  m_Name: pb_Mesh16392
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
