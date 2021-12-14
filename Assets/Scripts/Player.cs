@@ -85,6 +85,8 @@ public class Player : MonoBehaviour
         m_Pitch = m_PitchControllerTransform.localRotation.eulerAngles.x;
         m_CharacterController = GetComponent<CharacterController>();
         m_HookTransform.gameObject.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Start is called before the first frame update
@@ -92,6 +94,8 @@ public class Player : MonoBehaviour
     {
         m_camera = Camera.main;
         m_state = States.Normal;
+
+
     }
 
     // Update is called once per frame
