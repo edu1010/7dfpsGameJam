@@ -149,10 +149,12 @@ public class WallRun : MonoBehaviour
             m_targetRotation = Quaternion.Euler(m_PitchControllerTransform.localRotation.eulerAngles.x, 0.0f, 30);
         }
         m_Rotate = true;
+        timer = 0f;
     }
     void ResetPlayerRotatation()
     {
         m_FPSPlayer.m_IsWallRun = false;
+        timer = 0f;
         m_targetRotation = Quaternion.Euler(m_PitchControllerTransform.localRotation.eulerAngles.x, 0.0f, 0.0f);
         m_FPSPlayer.m_GravityMultiplayer=m_FPSPlayer.m_MAxGravityMultiplayer;
         m_Rotate = true;
