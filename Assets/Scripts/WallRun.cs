@@ -23,6 +23,9 @@ public class WallRun : MonoBehaviour
     Vector3 m_lastWallNormal;
     Quaternion m_targetRotation;
     float timer = 0.0f;
+    private bool m_Rotate;
+    public float m_TimeToRotate = 2f;
+
     bool isGrounded() => m_FPSPlayer.m_OnGround;
    
     // Start is called before the first frame update
@@ -43,7 +46,6 @@ public class WallRun : MonoBehaviour
         }
         if (m_IsWallRunning)
         {
-            timer += Time.deltaTime;
             
         }
         
@@ -54,6 +56,24 @@ public class WallRun : MonoBehaviour
         }
         m_WasWallRunning = m_IsWallRunning;
 
+        if (m_Rotate)
+        {
+            float rateTiempo = 1f / m_TimeToRotate;
+            
+            if (timer <= 1f)
+            {
+                timer += Time.deltaTime * rateTiempo;
+                m_PitchControllerTransform.localRotation = Quaternion.Lerp(m_PitchControllerTransform.localRotation, m_targetRotation, timer);
+            }
+            else
+            {
+                timer = 0f;
+                m_Rotate = false;
+            }
+            
+            
+
+        }
 
     }
     // Update is called once per frame
@@ -105,10 +125,6 @@ public class WallRun : MonoBehaviour
             m_FPSPlayer.m_GravityMultiplayer = m_FPSPlayer.m_MAxGravityMultiplayer;
             m_IsWallRunning = false;
         }
-        if(m_PitchControllerTransform.localRotation != m_targetRotation)
-        {
-            m_PitchControllerTransform.localRotation = Quaternion.Lerp(m_PitchControllerTransform.localRotation, m_targetRotation, 0.05f);
-        }
         
         
     }
@@ -132,11 +148,13 @@ public class WallRun : MonoBehaviour
         {
             m_targetRotation = Quaternion.Euler(m_PitchControllerTransform.localRotation.eulerAngles.x, 0.0f, 30);
         }
+        m_Rotate = true;
     }
     void ResetPlayerRotatation()
     {
         m_FPSPlayer.m_IsWallRun = false;
         m_targetRotation = Quaternion.Euler(m_PitchControllerTransform.localRotation.eulerAngles.x, 0.0f, 0.0f);
         m_FPSPlayer.m_GravityMultiplayer=m_FPSPlayer.m_MAxGravityMultiplayer;
+        m_Rotate = true;
     }
 }
