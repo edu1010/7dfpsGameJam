@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2942,7 +2942,7 @@ MonoBehaviour:
   m_InvertedYaw: 0
   m_InvertedPitch: 1
   m_CharacterController: {fileID: 761618205}
-  m_Speed: 30
+  m_Speed: 50
   m_LeftKeyCode: 97
   m_RightKeyCode: 100
   m_UpKeyCode: 119
@@ -2954,11 +2954,11 @@ MonoBehaviour:
   m_RunKeyCode: 304
   m_JumpKeyCode: 32
   m_FastSpeedMultiplier: 1.5
-  m_JumpSpeed: 20
+  m_JumpSpeed: 30
   m_GravityMultiplayer: 4
   m_MAxGravityMultiplayer: 4
   m_IsWallRun: 0
-  m_JumpWallSpeed: 15
+  m_JumpWallSpeed: 30
   m_SecnodsWihoutControl: 0.5
   m_hookVelocityMultiPlayer: 2
   m_hookVelocityMax: 40
@@ -2984,9 +2984,9 @@ MonoBehaviour:
   m_WhatIsWallRun:
     serializedVersion: 2
     m_Bits: 128
-  m_GravityInTheWall: 0.2
+  m_GravityInTheWall: 0.1
   m_FPSPlayer: {fileID: 761618207}
-  m_TimeToRotate: 2
+  m_TimeToRotate: 1
 --- !u!43 &775818627
 Mesh:
   m_ObjectHideFlags: 0
