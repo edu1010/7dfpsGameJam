@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour, IDamageTaker
+public class HealthSystem : MonoBehaviour, IDamageTaker, IRestartGameElements
 {
     public float m_maxHealth = 100f;
     public float m_maxShield = 50f;
@@ -82,7 +82,7 @@ public class HealthSystem : MonoBehaviour, IDamageTaker
             m_currentHealth = m_maxHealth;
         OnHit?.Invoke(m_currentHealth / m_maxHealth);
     }
-    public void RestartHealthSystem()
+    public void RestartGame()
     {
         
         m_currentHealth = m_maxHealth;
@@ -90,6 +90,7 @@ public class HealthSystem : MonoBehaviour, IDamageTaker
         OnRevive?.Invoke();
         OnHit?.Invoke(m_currentHealth / m_maxHealth);
         OnDamageShield?.Invoke(m_currentShield / m_maxShield);
+        gameObject.SetActive(true);
         
     }
     public void AddShield(float amount)

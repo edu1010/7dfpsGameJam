@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IRestartGameElements
 {
     Camera m_camera;
     float m_Yaw;
@@ -73,6 +73,10 @@ public class Player : MonoBehaviour
     public float m_throwSpeed = 70f;
     public GameObject m_KunaiHook;
 
+    Checkpoint m_CurrentCheckpoint;
+    Vector3 m_StartPosition;
+    Quaternion m_StartRotation;
+
     public GameObject m_bullet;
     enum States
     {
@@ -88,6 +92,7 @@ public class Player : MonoBehaviour
         m_CharacterController = GetComponent<CharacterController>();
         m_HookTransform.gameObject.SetActive(false);
         GameController.GetGameController().HideMouse();
+        GameController.GetGameController().AddRestartGameElement(this);
     }
 
     // Start is called before the first frame update
@@ -95,6 +100,8 @@ public class Player : MonoBehaviour
     {
         m_camera = Camera.main;
         m_state = States.Normal;
+        m_StartPosition = transform.position;
+        m_StartRotation = transform.rotation;
         GameController.GetGameController().SetPlayer(this);
     }
 
@@ -301,13 +308,38 @@ public class Player : MonoBehaviour
         
     }
 
-
-
-
-
     IEnumerator ReturnControlToPlayer()
     {
         yield return new WaitForSeconds(m_SecnodsWihoutControl);
         m_CanControl = true;
+    }
+
+    
+    public void RestartGame()
+    {
+        m_CharacterController.enabled = false;
+
+        if (m_CurrentCheckpoint != null)
+        {
+            transform.position = m_CurrentCheckpoint.m_StartPosition.position;
+            transform.rotation = m_CurrentCheckpoint.m_StartPosition.rotation;
+        }
+        else
+        {
+            transform.position = m_StartPosition;
+            transform.rotation = m_StartRotation;
+        }
+        m_CharacterController.enabled = true;
+        m_CanControl = true;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+         if (other.tag == "Checkpoint")
+        {
+            m_CurrentCheckpoint = other.GetComponent<Checkpoint>();
+        } if (other.tag == "DeadZone")
+        {
+            GameController.GetGameController().RestartGame();
+        }
     }
 }
