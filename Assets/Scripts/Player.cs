@@ -89,6 +89,7 @@ public class Player : MonoBehaviour, IRestartGameElements
 
     void Awake()
     {
+        Application.targetFrameRate = 60;
         m_Yaw = transform.rotation.eulerAngles.y;
         m_Pitch = m_PitchControllerTransform.localRotation.eulerAngles.x;
         m_CharacterController = GetComponent<CharacterController>();
