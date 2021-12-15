@@ -98,7 +98,7 @@ public class GameController : MonoBehaviour
     }
     public void FinishGameLevel()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
         m_GameStates = GameStates.FinishLevel;
         ShoweMouse();
         ShowCanvasGroup(m_FinishCanvas);

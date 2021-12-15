@@ -6,7 +6,7 @@ public class TypeOfCanvas : MonoBehaviour
 {
     public TCanvas m_canvas;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         switch (m_canvas)
         {
