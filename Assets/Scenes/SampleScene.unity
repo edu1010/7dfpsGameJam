@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_InvertedYaw: 0
   m_InvertedPitch: 1
   m_CharacterController: {fileID: 761618205}
-  m_Speed: 50
+  m_Speed: 30
   m_LeftKeyCode: 97
   m_RightKeyCode: 100
   m_UpKeyCode: 119
