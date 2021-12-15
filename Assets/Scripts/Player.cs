@@ -70,6 +70,7 @@ public class Player : MonoBehaviour, IRestartGameElements
     States m_state = States.Normal;
     public float m_ReachedHookPos = 1f;
     [Header("Hook Animation")]
+    public Animator m_animator;
     public Transform m_HookTransform;
     private float m_HookSize = 1f;
     public float m_throwSpeed = 70f;
@@ -107,6 +108,7 @@ public class Player : MonoBehaviour, IRestartGameElements
         m_StartPosition = transform.position;
         m_StartRotation = transform.rotation;
         GameController.GetGameController().SetPlayer(this);
+        m_animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -195,13 +197,7 @@ public class Player : MonoBehaviour, IRestartGameElements
              }*/
             l_Movement += m_dir * Time.deltaTime * m_HorizontalSpeed;
         }
-
-        //comprobamos si estamos corriendo
-        float l_SpeedMultiplier = 1.0f;
-        if (Input.GetKey(m_RunKeyCode))
-        {
-            l_SpeedMultiplier = m_FastSpeedMultiplier;
-        }
+        m_animator.SetFloat("Speed", l_Movement.magnitude);
         CollisionFlags l_CollisionFlags = m_CharacterController.Move(l_Movement);//Macara binaria para saber como hemos chocado, por arriba abajo
         if ((l_CollisionFlags & CollisionFlags.Below) != 0)//Colisiona con el suelo
         {
@@ -255,6 +251,7 @@ public class Player : MonoBehaviour, IRestartGameElements
     {
         if (Input.GetMouseButtonDown(0))
         {
+            m_animator.SetTrigger("Attack");
             Ray l_Ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
             var l_bullet = m_bullet.GetComponent<Bullet>();
             l_bullet.m_BulletDebug = false;
@@ -271,6 +268,7 @@ public class Player : MonoBehaviour, IRestartGameElements
     {
         if (Input.GetMouseButtonDown(1))
         {
+            
            if( Physics.Raycast(m_camera.transform.position, m_camera.transform.forward,out RaycastHit l_raycastHit, m_MaxDistance, m_Shootmask))
             {
                 m_HookTargetPos = l_raycastHit.point;
