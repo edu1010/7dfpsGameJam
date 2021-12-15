@@ -61,6 +61,8 @@ public class Player : MonoBehaviour, IRestartGameElements
     public float m_SecnodsWihoutControl = 0.5f;
 
     [Header("Hook")]
+    public LayerMask m_Shootmask;
+    public float m_MaxDistance=500f;
     public float m_hookVelocityMultiPlayer = 2f;
     public float m_hookVelocityMax = 40f;
     public float m_hookVelocityMin = 10f;
@@ -266,7 +268,7 @@ public class Player : MonoBehaviour, IRestartGameElements
     {
         if (Input.GetMouseButtonDown(1))
         {
-           if( Physics.Raycast(m_camera.transform.position, m_camera.transform.forward,out RaycastHit l_raycastHit))
+           if( Physics.Raycast(m_camera.transform.position, m_camera.transform.forward,out RaycastHit l_raycastHit, m_MaxDistance, m_Shootmask))
             {
                 m_HookTargetPos = l_raycastHit.point;
                 m_state = States.HoockShotThorw;
