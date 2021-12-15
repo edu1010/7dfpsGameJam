@@ -6,7 +6,7 @@ public class TypeOfCanvas : MonoBehaviour
 {
     public TCanvas m_canvas;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         switch (m_canvas)
         {
@@ -16,6 +16,9 @@ public class TypeOfCanvas : MonoBehaviour
             case (TCanvas.FinishLevelCanvas):
                 GameController.GetGameController().SetFinishCanvas(gameObject.GetComponent<CanvasGroup>());
                 break;
+            case (TCanvas.GameHud):
+                GameController.GetGameController().SetGameHudCanvas(gameObject.GetComponent<CanvasGroup>());
+                break;
         }
     }
    
@@ -23,5 +26,6 @@ public class TypeOfCanvas : MonoBehaviour
 public enum TCanvas
 {
     pauseCanvas,
-    FinishLevelCanvas
+    FinishLevelCanvas,
+    GameHud
 }

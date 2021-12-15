@@ -9,7 +9,7 @@ public class LevelLoader : MonoBehaviour
 
 
     static LevelLoader m_LevelLoader = null;
-    public CanvasGroup m_canvas;
+   
 
     private void Awake()
     {
@@ -26,11 +26,12 @@ public class LevelLoader : MonoBehaviour
 
     static public LevelLoader GetLoadLevel()
     {
+        Debug.Log("loader");
         return m_LevelLoader;
     }
     public void LoadNextLevel()
     {
-        if(SceneManager.GetActiveScene().buildIndex + 1 <= SceneManager.sceneCountInBuildSettings)
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         else
             StartCoroutine(LoadLevel(0));
@@ -42,13 +43,15 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
+       
         m_transition.SetTrigger("Start");
         yield return new WaitForSeconds(m_transitionTime);
         AsyncOperation LoadLevel = SceneManager.LoadSceneAsync(levelIndex);
         LoadLevel.completed += (asyncOperation) =>
         {
-            GameController.GetGameController().HideMouse();
             m_transition.SetTrigger("End");
+
+            GameController.GetGameController().ResumeGame();
         };
     }
 
