@@ -23,6 +23,7 @@ public class HealthSystem : MonoBehaviour, IDamageTaker, IRestartGameElements
     {
         m_currentHealth = m_maxHealth;
         m_currentShield = m_maxShield;
+        GameController.GetGameController().AddRestartGameElement(this);
     }
 
     public virtual void TakeDamage(float amount)
