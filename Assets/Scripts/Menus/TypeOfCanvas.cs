@@ -16,6 +16,9 @@ public class TypeOfCanvas : MonoBehaviour
             case (TCanvas.FinishLevelCanvas):
                 GameController.GetGameController().SetFinishCanvas(gameObject.GetComponent<CanvasGroup>());
                 break;
+            case (TCanvas.GameHud):
+                GameController.GetGameController().SetGameHudCanvas(gameObject.GetComponent<CanvasGroup>());
+                break;
         }
     }
    
@@ -23,5 +26,6 @@ public class TypeOfCanvas : MonoBehaviour
 public enum TCanvas
 {
     pauseCanvas,
-    FinishLevelCanvas
+    FinishLevelCanvas,
+    GameHud
 }

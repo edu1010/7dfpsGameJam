@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
     CanvasGroup m_FinishCanvas;
     GameStates m_GameStates = GameStates.PLAY;
     float m_TimeInLevel = 0f;
+    private CanvasGroup m_GameHud;
+
     private void Awake()
     {
         if (m_GameController == null)
@@ -81,6 +83,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
         ShoweMouse();
         ShowCanvasGroup(m_PauseCanvas);
+        HideCanvasGroup(m_GameHud);
         m_GameStates = GameStates.PAUSE;
     }
     public void ResumeGame()
@@ -88,6 +91,7 @@ public class GameController : MonoBehaviour
         Debug.Log("hi");
         Time.timeScale = 1f;
         HideCanvasGroup(m_PauseCanvas);
+        ShowCanvasGroup(m_GameHud);
         m_GameStates = GameStates.PLAY;
         Debug.Log("hi");
         HideMouse();
@@ -99,6 +103,7 @@ public class GameController : MonoBehaviour
         ShoweMouse();
         ShowCanvasGroup(m_FinishCanvas);
         HideCanvasGroup(m_PauseCanvas);
+        HideCanvasGroup(m_GameHud);
 
     }
     public void HideMouse()
@@ -115,6 +120,10 @@ public class GameController : MonoBehaviour
     public void SetPauseCanvas(CanvasGroup _canvas)
     {
         m_PauseCanvas = _canvas;
+    } 
+    public void SetGameHudCanvas(CanvasGroup _canvas)
+    {
+        m_GameHud = _canvas;
     }
     public void SetFinishCanvas(CanvasGroup _canvas)
     {
