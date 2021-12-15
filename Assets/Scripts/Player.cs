@@ -96,6 +96,7 @@ public class Player : MonoBehaviour, IRestartGameElements
         m_HookTransform.gameObject.SetActive(false);
         GameController.GetGameController().HideMouse();
         GameController.GetGameController().AddRestartGameElement(this);
+        
     }
 
     // Start is called before the first frame update
@@ -198,8 +199,6 @@ public class Player : MonoBehaviour, IRestartGameElements
         {
             l_SpeedMultiplier = m_FastSpeedMultiplier;
         }
-
-        l_Movement *= Time.deltaTime * m_Speed * l_SpeedMultiplier;
         CollisionFlags l_CollisionFlags = m_CharacterController.Move(l_Movement);//Macara binaria para saber como hemos chocado, por arriba abajo
         if ((l_CollisionFlags & CollisionFlags.Below) != 0)//Colisiona con el suelo
         {
