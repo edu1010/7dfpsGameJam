@@ -287,7 +287,8 @@ public class Player : MonoBehaviour, IRestartGameElements
         m_HookSize += m_throwSpeed * Time.deltaTime;
         m_KunaiHook.transform.position += (m_HookTargetPos- m_KunaiHook.transform.position).normalized * m_throwSpeed * Time.deltaTime;
         
-        if ( Vector3.Distance(m_KunaiHook.transform.position, m_HookTargetPos)<=1){
+        if ( Vector3.Distance(m_KunaiHook.transform.position, m_HookTargetPos) <=1)
+        {
             m_state = States.Fly;     
         }
 
@@ -333,6 +334,7 @@ public class Player : MonoBehaviour, IRestartGameElements
             transform.rotation = m_StartRotation;
         }
         m_CharacterController.enabled = true;
+        m_state = States.Normal;
         m_CanControl = true;
     }
     private void OnTriggerEnter(Collider other)
