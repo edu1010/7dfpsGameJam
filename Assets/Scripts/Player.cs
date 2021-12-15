@@ -112,26 +112,29 @@ public class Player : MonoBehaviour, IRestartGameElements
     // Update is called once per frame
     void Update()
     {
-        switch (m_state)
+        if (GameController.GetGameController().GetGameState() == GameStates.PLAY)
         {
-            case (States.Normal):
-                CameraMovement();
-                HandleHoosShootStart();
-                Movement();
-                KunaiShoot();
-                break;
-            case (States.Fly):
-                CameraMovement();
-                HandleHookShotMovement();
-                HandleHoosShootStart();
-                KunaiShoot();
-                break;
-            case (States.HoockShotThorw):
-                HandleHoosShootStart();
-                HandleHookShotThrow();
-                CameraMovement();
-                Movement();
-                break;
+            switch (m_state)
+            {
+                case (States.Normal):
+                    CameraMovement();
+                    HandleHoosShootStart();
+                    Movement();
+                    KunaiShoot();
+                    break;
+                case (States.Fly):
+                    CameraMovement();
+                    HandleHookShotMovement();
+                    HandleHoosShootStart();
+                    KunaiShoot();
+                    break;
+                case (States.HoockShotThorw):
+                    HandleHoosShootStart();
+                    HandleHookShotThrow();
+                    CameraMovement();
+                    Movement();
+                    break;
+            }
         }
         
 
@@ -342,6 +345,10 @@ public class Player : MonoBehaviour, IRestartGameElements
         } if (other.tag == "DeadZone")
         {
             GameController.GetGameController().RestartGame();
+        }
+        if (other.tag == "Finish")
+        {
+            GameController.GetGameController().FinishGameLevel();
         }
     }
 }

@@ -562,23 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59852e015bd99b0429e9c541e222d8c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &579899812 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8937672567517920028, guid: dacf9b104ee6b6648a5db17814e5413d, type: 3}
-  m_PrefabInstance: {fileID: 8937672567007226552}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &579899816
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579899812}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &589918707
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,11 +610,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!95 &744206096 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8937672567479829928, guid: dacf9b104ee6b6648a5db17814e5413d, type: 3}
-  m_PrefabInstance: {fileID: 8937672567007226552}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &774906655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,10 +1150,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoaderGameObject
       objectReference: {fileID: 0}
-    - target: {fileID: 8937672567099208940, guid: dacf9b104ee6b6648a5db17814e5413d, type: 3}
-      propertyPath: m_transition
-      value: 
-      objectReference: {fileID: 744206096}
     - target: {fileID: 8937672567099208941, guid: dacf9b104ee6b6648a5db17814e5413d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1218,14 +1192,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8937672567099208941, guid: dacf9b104ee6b6648a5db17814e5413d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8937672567479829942, guid: dacf9b104ee6b6648a5db17814e5413d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8937672567639571901, guid: dacf9b104ee6b6648a5db17814e5413d, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

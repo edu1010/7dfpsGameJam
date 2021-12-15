@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public enum GameStates
 {
     PLAY = 0,
-    PAUSE
+    PAUSE,
+    FinishLevel
 }
 public class GameController : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class GameController : MonoBehaviour
     Player m_Player;
 
     static GameController m_GameController = null;
-
+    CanvasGroup m_PauseCanvas;
+    CanvasGroup m_FinishCanvas;
+    GameStates m_GameStates = GameStates.PLAY;
+    float m_TimeInLevel = 0f;
     private void Awake()
     {
         if (m_GameController == null)
@@ -33,6 +37,18 @@ public class GameController : MonoBehaviour
         m_RestartGameElements = new List<IRestartGameElements>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (m_GameStates == GameStates.PLAY)
+                StopGame();
+            else if (m_GameStates == GameStates.PAUSE)
+                ResumeGame();
+        }
+        if(m_GameStates == GameStates.PLAY)
+            m_TimeInLevel += Time.deltaTime;
+    }
     public void AddRestartGameElement (IRestartGameElements RestartGameElement)
     {
         m_RestartGameElements.Add(RestartGameElement);
@@ -54,10 +70,35 @@ public class GameController : MonoBehaviour
     public void SetPlayer(Player _Player)
     {
         m_Player = _Player;
+        m_TimeInLevel = 0;
     }
     public Player GetPlayer()
     {
         return m_Player;
+    }
+    public void StopGame()
+    {
+        Time.timeScale = 0f;
+        ShoweMouse();
+        ShowCanvasGroup(m_PauseCanvas);
+        m_GameStates = GameStates.PAUSE;
+    }
+    public void ResumeGame()
+    {
+        Debug.Log("hi");
+        Time.timeScale = 1f;
+        HideCanvasGroup(m_PauseCanvas);
+        m_GameStates = GameStates.PLAY;
+        Debug.Log("hi");
+        HideMouse();
+    }
+    public void FinishGameLevel()
+    {
+        Time.timeScale = 0f;
+        m_GameStates = GameStates.FinishLevel;
+        ShowCanvasGroup(m_FinishCanvas);
+        HideCanvasGroup(m_PauseCanvas);
+
     }
     public void HideMouse()
     {
@@ -68,5 +109,34 @@ public class GameController : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void SetPauseCanvas(CanvasGroup _canvas)
+    {
+        m_PauseCanvas = _canvas;
+    }
+    public void SetFinishCanvas(CanvasGroup _canvas)
+    {
+        m_FinishCanvas = _canvas;
+    }
+    private void HideCanvasGroup(CanvasGroup canvasGroup)
+    {
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+    }
+    private void ShowCanvasGroup(CanvasGroup canvasGroup)
+    {
+        canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+    }
+    public GameStates GetGameState()
+    {
+        return m_GameStates;
+    }
+    public float GetTimeInLevel()
+    {
+        return m_TimeInLevel;
     }
 }

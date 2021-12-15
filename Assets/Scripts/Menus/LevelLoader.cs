@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
 
 
     static LevelLoader m_LevelLoader = null;
+    public CanvasGroup m_canvas;
 
     private void Awake()
     {
@@ -23,10 +24,16 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-
+    static public LevelLoader GetLoadLevel()
+    {
+        return m_LevelLoader;
+    }
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        if(SceneManager.GetActiveScene().buildIndex + 1 <= SceneManager.sceneCountInBuildSettings)
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        else
+            StartCoroutine(LoadLevel(0));
     }
     public void LoadNextLevel(int nextLevel)
     {
@@ -44,6 +51,7 @@ public class LevelLoader : MonoBehaviour
             m_transition.SetTrigger("End");
         };
     }
+
 }
 
 
