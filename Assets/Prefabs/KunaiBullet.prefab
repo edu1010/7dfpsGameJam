@@ -25,19 +25,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 155e2d52400fc4147afe3f408c45d81c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.26
+      value: 2.5804076
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 155e2d52400fc4147afe3f408c45d81c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.08
+      value: 6.0199995
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 155e2d52400fc4147afe3f408c45d81c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54.89
+      value: -23.271969
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 155e2d52400fc4147afe3f408c45d81c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.81858915
+      value: -0.99923843
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 155e2d52400fc4147afe3f408c45d81c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 155e2d52400fc4147afe3f408c45d81c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5743795
+      value: 0.039020557
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 155e2d52400fc4147afe3f408c45d81c, type: 3}
       propertyPath: m_LocalRotation.z
@@ -94,7 +94,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   m_HitParticle: {fileID: 0}
-  m_dir: {x: -0.91314536, y: -0.23884533, z: 0.33033076}
+  m_dir: {x: -0.062322114, y: 0.6010702, z: 0.7967625}
   m_speed: 30
   m_gravity: -0.2
   m_BulletDebug: 0

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HologramMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: bc29a6d67bf32f04ab80be8bc6fbddb0, type: 3}
+  m_Name: GridColorMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 7ec5353ebe1cfdd4a895f144bbe5289d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,14 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_976bc553e2f14acda3d49da29a92e291:
-        m_Texture: {fileID: 2800000, guid: a7fad2288e4952f4b81e71e17dd87e8f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture3D_de92291cfdde46fbb728ee986d68ef60:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -111,16 +103,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_415531fd55694967a59db9471c920725: {r: 26.764908, g: 14.153172, b: 6.586129, a: 0.8078431}
-    - Color_7c8328997a8d4d3cb04aa9f61d832997: {r: 9.189587, g: 3.8009286, b: 0, a: 1}
-    - Color_d223c8baeef4478db1ab9b06a4dac30d: {r: 0, g: 1, b: 0.643281, a: 1}
-    - Vector2_10df710e9cc94564ba439538c3ac64b9: {r: 1, g: 0.2, b: 0, a: 0}
+    - Color_1c5975a3c6f1451da3247bd0edd90c70: {r: 98.150536, g: 98.150536, b: 98.150536, a: 1}
+    - Vector2_316604dd9d54420b8dda8d049f0cea5a: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &2734008077705479117
+--- !u!114 &2052863529784973410
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
