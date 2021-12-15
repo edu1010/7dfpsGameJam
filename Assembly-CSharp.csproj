@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\DesactiveObjectOnTime.cs" />
     <Compile Include="Assets\Scripts\HealthSystem\HealthSystem.cs" />
     <Compile Include="Assets\Scripts\HealthSystem\IDamageTaker.cs" />
+    <Compile Include="Assets\Scripts\HealthSystem\BasicDamageTaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
