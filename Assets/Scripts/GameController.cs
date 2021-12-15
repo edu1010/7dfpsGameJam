@@ -96,6 +96,7 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 0f;
         m_GameStates = GameStates.FinishLevel;
+        ShoweMouse();
         ShowCanvasGroup(m_FinishCanvas);
         HideCanvasGroup(m_PauseCanvas);
 
