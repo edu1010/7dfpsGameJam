@@ -71,7 +71,9 @@ public class Player : MonoBehaviour
     public Transform m_HookTransform;
     private float m_HookSize = 1f;
     public float m_throwSpeed = 70f;
+    public GameObject m_KunaiHook;
 
+    public GameObject m_bullet;
     enum States
     {
         Normal = 0,
@@ -85,8 +87,7 @@ public class Player : MonoBehaviour
         m_Pitch = m_PitchControllerTransform.localRotation.eulerAngles.x;
         m_CharacterController = GetComponent<CharacterController>();
         m_HookTransform.gameObject.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        GameController.GetGameController().HideMouse();
     }
 
     // Start is called before the first frame update
@@ -94,8 +95,7 @@ public class Player : MonoBehaviour
     {
         m_camera = Camera.main;
         m_state = States.Normal;
-
-
+        GameController.GetGameController().SetPlayer(this);
     }
 
     // Update is called once per frame
@@ -107,13 +107,16 @@ public class Player : MonoBehaviour
                 CameraMovement();
                 HandleHoosShootStart();
                 Movement();
+                KunaiShoot();
                 break;
             case (States.Fly):
                 CameraMovement();
                 HandleHookShotMovement();
                 HandleHoosShootStart();
+                KunaiShoot();
                 break;
             case (States.HoockShotThorw):
+                HandleHoosShootStart();
                 HandleHookShotThrow();
                 CameraMovement();
                 Movement();
@@ -236,6 +239,22 @@ public class Player : MonoBehaviour
     }
 
 
+    private void KunaiShoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray l_Ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+            var l_bullet = m_bullet.GetComponent<Bullet>();
+            l_bullet.m_BulletDebug = false;
+            l_bullet.m_dir = l_Ray.direction;
+            l_bullet.transform.position = Camera.main.transform.position;
+            l_bullet.transform.rotation = transform.rotation;
+            Instantiate(m_bullet);
+
+        }
+            
+        
+    }
     private void HandleHoosShootStart()
     {
         if (Input.GetMouseButtonDown(1))
@@ -245,19 +264,21 @@ public class Player : MonoBehaviour
                 m_HookTargetPos = l_raycastHit.point;
                 m_state = States.HoockShotThorw;
                 m_HookTransform.gameObject.SetActive(true);
-                m_HookTransform.localScale = Vector3.zero;
+                //m_HookTransform.localScale = Vector3.zero;
                 m_HookSize = 0f;
+                m_KunaiHook.transform.SetParent(null);
             }
         }
     }
     private void HandleHookShotThrow()
     {
-        m_HookTransform.LookAt(m_HookTargetPos);
+        m_KunaiHook.transform.LookAt(m_HookTargetPos);
+
         m_HookSize += m_throwSpeed * Time.deltaTime;
-        m_HookTransform.localScale = new Vector3(1f, 1f, m_HookSize);
-        if(m_HookSize >= Vector3.Distance(transform.position, m_HookTargetPos)){
-            m_state = States.Fly;
-            m_HookTransform.gameObject.SetActive(false);
+        m_KunaiHook.transform.position += (m_HookTargetPos- m_KunaiHook.transform.position).normalized * m_throwSpeed * Time.deltaTime;
+        
+        if ( Vector3.Distance(m_KunaiHook.transform.position, m_HookTargetPos)<=1){
+            m_state = States.Fly;     
         }
 
     }
@@ -273,6 +294,9 @@ public class Player : MonoBehaviour
           ((l_CollisionFlags & CollisionFlags.Sides) != 0))
         {
             m_state = States.Normal;
+            m_KunaiHook.transform.SetParent(m_HookTransform);
+            m_KunaiHook.transform.localPosition = new Vector3(0, 1, 0.5f);
+            m_HookTransform.gameObject.SetActive(false);
         }
         
     }

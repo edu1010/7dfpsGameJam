@@ -4,14 +4,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
-
     public Animator m_transition;
     public float m_transitionTime = 1f;
-    // Update is called once per frame
-    void Update()
+
+
+    static LevelLoader m_LevelLoader = null;
+
+    private void Awake()
     {
-        
+        if (m_LevelLoader == null)
+        {
+            m_LevelLoader = this;
+            GameObject.DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            GameObject.Destroy(this); // ya existe, no hace falta crearla
+        }
     }
+
 
     public void LoadNextLevel()
     {
@@ -29,7 +40,8 @@ public class LevelLoader : MonoBehaviour
         AsyncOperation LoadLevel = SceneManager.LoadSceneAsync(levelIndex);
         LoadLevel.completed += (asyncOperation) =>
         {
-
+            GameController.GetGameController().HideMouse();
+            m_transition.SetTrigger("End");
         };
     }
 }
