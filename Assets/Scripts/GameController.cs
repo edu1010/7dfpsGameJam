@@ -73,6 +73,9 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1f;
         HideCanvasGroup(m_PauseCanvas);
         ShowCanvasGroup(m_GameHud);
+        m_GameStates = GameStates.PLAY;
+        Debug.Log("hi");
+        HideMouse();
 
     }
 
