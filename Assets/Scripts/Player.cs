@@ -177,7 +177,10 @@ public class Player : MonoBehaviour, IRestartGameElements
             l_Movement.Normalize();
         }
 
-        l_Movement = l_Movement * Time.deltaTime * m_Speed;
+        //Apply momentum
+        l_Movement += m_CharacterVelocityMomemtum;
+        l_Movement = l_Movement * Time.deltaTime * m_Speed ;
+
         //IMPLEMENTACION DE GRAVEDAD
         if (!m_OnGround && (m_VerticalSpeed == 0 || (m_OldVerticalSpeed < 0 && m_VerticalSpeed > 0)))
         {
@@ -198,7 +201,22 @@ public class Player : MonoBehaviour, IRestartGameElements
             l_Movement += m_dir * Time.deltaTime * m_HorizontalSpeed;
         }
         m_animator.SetFloat("Speed", l_Movement.magnitude);
+
+        
+        
+
         CollisionFlags l_CollisionFlags = m_CharacterController.Move(l_Movement);//Macara binaria para saber como hemos chocado, por arriba abajo
+        if(m_CharacterVelocityMomemtum.magnitude >= 0)
+        {
+            float l_momemtumDrag = 3f;
+            m_CharacterVelocityMomemtum -= m_CharacterVelocityMomemtum * l_momemtumDrag * Time.deltaTime;
+            if (m_CharacterVelocityMomemtum.magnitude <= .0f)
+            {
+                m_CharacterVelocityMomemtum = Vector3.zero;
+            }
+
+                
+        }
         if ((l_CollisionFlags & CollisionFlags.Below) != 0)//Colisiona con el suelo
         {
             m_OnGround = true;
@@ -293,23 +311,37 @@ public class Player : MonoBehaviour, IRestartGameElements
         }
 
     }
+
+    Vector3 m_CharacterVelocityMomemtum;
     private void HandleHookShotMovement()
     {
         m_HookTransform.LookAt(m_HookTargetPos);
         Vector3 l_HookDir = (m_HookTargetPos - transform.position).normalized;
-        float l_hookSpeed = Mathf.Clamp(Vector3.Distance(transform.position, m_HookTargetPos), m_hookVelocityMin,  m_hookVelocityMax);
+        float l_hookSpeed = Mathf.Clamp(Vector3.Distance(transform.position, m_HookTargetPos), m_hookVelocityMin, m_hookVelocityMax);
 
         CollisionFlags l_CollisionFlags = m_CharacterController.Move(l_HookDir * l_hookSpeed * m_hookVelocityMultiPlayer * Time.deltaTime);
 
-        if(Vector3.Distance(transform.position,m_HookTargetPos)< m_ReachedHookPos ||
-          ((l_CollisionFlags & CollisionFlags.Sides) != 0))
+        if (Vector3.Distance(transform.position, m_HookTargetPos) < m_ReachedHookPos ||
+          ((l_CollisionFlags & CollisionFlags.Sides) != 0) ||
+          (
+          (l_CollisionFlags & CollisionFlags.Above) != 0 && m_VerticalSpeed > 0.0f)
+          )
         {
             m_state = States.Normal;
             m_KunaiHook.transform.SetParent(m_HookTransform);
             m_KunaiHook.transform.localPosition = new Vector3(0, 1, 0.5f);
             m_HookTransform.gameObject.SetActive(false);
         }
-        
+
+        if (Input.GetKeyDown(m_JumpKeyCode))
+        {
+            float l_momemtumExtra = 2f;
+            m_CharacterVelocityMomemtum = l_HookDir * l_hookSpeed * l_momemtumExtra;
+            
+            m_state = States.Normal;
+            m_VerticalSpeed = 0;
+
+        }
     }
 
     IEnumerator ReturnControlToPlayer()
@@ -337,7 +369,7 @@ public class Player : MonoBehaviour, IRestartGameElements
         m_state = States.Normal;
         m_CanControl = true;
     }
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
          if (other.tag == "Checkpoint")
         {
