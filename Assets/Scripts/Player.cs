@@ -81,6 +81,9 @@ public class Player : MonoBehaviour, IRestartGameElements
     Quaternion m_StartRotation;
 
     public GameObject m_bullet;
+
+
+    public float m_momemtumExtra = 2f;
     enum States
     {
         Normal = 0,
@@ -335,8 +338,8 @@ public class Player : MonoBehaviour, IRestartGameElements
 
         if (Input.GetKeyDown(m_JumpKeyCode))
         {
-            float l_momemtumExtra = 2f;
-            m_CharacterVelocityMomemtum = l_HookDir * l_hookSpeed * l_momemtumExtra;
+            
+            m_CharacterVelocityMomemtum = Vector3.up * l_hookSpeed * m_momemtumExtra;
             
             m_state = States.Normal;
             m_VerticalSpeed = 0;
