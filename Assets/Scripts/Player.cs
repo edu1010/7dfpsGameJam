@@ -386,4 +386,12 @@ public class Player : MonoBehaviour, IRestartGameElements
             GameController.GetGameController().FinishGameLevel();
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            GameController.GetGameController().RestartGame();
+        }
+    }
 }
