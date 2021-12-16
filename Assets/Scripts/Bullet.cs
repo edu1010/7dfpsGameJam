@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
     public LayerMask m_ShootLayerMask;
     public GameObject m_HitParticle;
     public Ray m_RayDir;
