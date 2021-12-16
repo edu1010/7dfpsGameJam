@@ -145,6 +145,10 @@ public class GameController : MonoBehaviour
     {
         return m_GameStates;
     }
+    public void SetGameState(GameStates _GameStates)
+    {
+         m_GameStates= _GameStates;
+    }
     public float GetTimeInLevel()
     {
         return m_TimeInLevel;
