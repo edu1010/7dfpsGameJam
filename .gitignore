@@ -69,3 +69,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+.vs/7dfpsGameJam/v16/.suo
+UserSettings/EditorUserSettings.asset
