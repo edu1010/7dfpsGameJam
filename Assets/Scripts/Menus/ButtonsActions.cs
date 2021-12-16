@@ -11,7 +11,7 @@ public class ButtonsActions : MonoBehaviour
         if (!canPres)
         {
             m_timer += Time.deltaTime;
-            if (m_timer > 1f)
+            if (m_timer > 5f)
             {
                 canPres = true;
                 m_timer = 0f;
@@ -20,8 +20,11 @@ public class ButtonsActions : MonoBehaviour
     }
     public void Resume()
     {
-        GameController.GetGameController().ResumeGame();
-        canPres = false;
+        if (canPres)
+        {
+            GameController.GetGameController().ResumeGame();
+            canPres = false;
+        }
     }
    public void FinishGame()
     {
@@ -29,18 +32,30 @@ public class ButtonsActions : MonoBehaviour
     }
     public void NextLevel()
     {
-        LevelLoader.GetLoadLevel().LoadNextLevel();
-        canPres = false;
+        if (canPres)
+        {
+            LevelLoader.GetLoadLevel().LoadNextLevel();
+            canPres = false;
+        }
+        
     }
     public void ResetLevel()
     {
-        GameController.GetGameController().ResetLevel();
-        canPres = false;
+        if (canPres)
+        {
+            GameController.GetGameController().ResetLevel();
+            canPres = false;
+        }
+        
     }
 
     public void GoToFirstLevel()
     {
-        LevelLoader.GetLoadLevel().LoadNextLevel(1);
-        canPres = false;
+        if (canPres)
+        {
+            LevelLoader.GetLoadLevel().LoadNextLevel(1);
+            canPres = false;
+        }
+       
     }
 }

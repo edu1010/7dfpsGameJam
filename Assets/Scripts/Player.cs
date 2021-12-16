@@ -100,7 +100,8 @@ public class Player : MonoBehaviour, IRestartGameElements
         m_HookTransform.gameObject.SetActive(false);
         GameController.GetGameController().HideMouse();
         GameController.GetGameController().AddRestartGameElement(this);
-        
+        GameController.GetGameController().SetPlayer(this); 
+
     }
 
     // Start is called before the first frame update
@@ -110,7 +111,7 @@ public class Player : MonoBehaviour, IRestartGameElements
         m_state = States.Normal;
         m_StartPosition = transform.position;
         m_StartRotation = transform.rotation;
-        GameController.GetGameController().SetPlayer(this);
+        
         m_animator = GetComponent<Animator>();
     }
 
@@ -396,6 +397,13 @@ public class Player : MonoBehaviour, IRestartGameElements
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
+        {
+            GameController.GetGameController().RestartGame();
+        }
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.tag == "Enemy")
         {
             GameController.GetGameController().RestartGame();
         }

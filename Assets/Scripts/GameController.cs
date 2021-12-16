@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 
     public void RestartGame()
     {
+        m_Player.RestartGame();
         foreach (IRestartGameElements l_RestartGameElement in m_RestartGameElements)
             l_RestartGameElement.RestartGame();
     }
