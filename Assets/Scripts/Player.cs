@@ -372,6 +372,10 @@ public class Player : MonoBehaviour, IRestartGameElements
         m_state = States.Normal;
         m_CanControl = true;
     }
+    public void ResetLevel()
+    {
+        m_CurrentCheckpoint = null;
+    }
     public void OnTriggerEnter(Collider other)
     {
          if (other.tag == "Checkpoint")

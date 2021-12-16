@@ -17,4 +17,8 @@ public class ButtonsActions : MonoBehaviour
     {
         LevelLoader.GetLoadLevel().LoadNextLevel();
     }
+    public void ResetLevel()
+    {
+        GameController.GetGameController().ResetLevel();
+    }
 }

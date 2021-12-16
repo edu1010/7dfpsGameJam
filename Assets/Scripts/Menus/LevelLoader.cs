@@ -45,6 +45,7 @@ public class LevelLoader : MonoBehaviour
     {
        
         m_transition.SetTrigger("Start");
+        GameController.GetGameController().EmptyRestartGameElement();
         yield return new WaitForSeconds(m_transitionTime);
         AsyncOperation LoadLevel = SceneManager.LoadSceneAsync(levelIndex);
         LoadLevel.completed += (asyncOperation) =>

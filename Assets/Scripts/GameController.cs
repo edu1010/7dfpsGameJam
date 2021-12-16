@@ -55,11 +55,22 @@ public class GameController : MonoBehaviour
     {
         m_RestartGameElements.Add(RestartGameElement);
     }
+    public void EmptyRestartGameElement()
+    {
+        m_RestartGameElements = null;
+        m_RestartGameElements = new List<IRestartGameElements>();
+    }
 
     public void RestartGame()
     {
         foreach (IRestartGameElements l_RestartGameElement in m_RestartGameElements)
             l_RestartGameElement.RestartGame();
+    }
+    public void ResetLevel()
+    {
+        m_Player.ResetLevel();
+        RestartGame();
+
     }
 
    
