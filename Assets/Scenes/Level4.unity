@@ -273,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72239619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.75, y: 2.62, z: -20.34}
+  m_LocalPosition: {x: 28.47, y: 2.62, z: -20.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2137823752}
@@ -668,7 +668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280472894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.05, y: 2.62, z: -10.440001}
+  m_LocalPosition: {x: -17.66, y: 2.62, z: -10.440001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2137823752}
@@ -1166,7 +1166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474330072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.75, y: 2.62, z: -15.85}
+  m_LocalPosition: {x: 28.47, y: 2.62, z: -15.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2137823752}
@@ -1196,7 +1196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490520220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.75, y: 2.62, z: -10.440001}
+  m_LocalPosition: {x: 28.47, y: 2.62, z: -10.440001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2137823752}
@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_WayyPoints:
   - {fileID: 280472895}
   - {fileID: 490520221}
-  m_Time: 20
+  m_Time: 60
 --- !u!114 &529996717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2986,7 +2986,7 @@ MonoBehaviour:
   m_WayyPoints:
   - {fileID: 1371275522}
   - {fileID: 901926667}
-  m_Time: 20
+  m_Time: 60
 --- !u!114 &887678268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3117,7 +3117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901926666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.75, y: 2.62, z: -0.52000046}
+  m_LocalPosition: {x: 28.47, y: 2.62, z: -0.52000046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2137823752}
@@ -6893,7 +6893,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358729742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.05, y: 2.62, z: -20.34}
+  m_LocalPosition: {x: -17.66, y: 2.62, z: -20.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2137823752}
@@ -7455,7 +7455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371275521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.05, y: 2.62, z: -0.52}
+  m_LocalPosition: {x: -17.66, y: 2.62, z: -0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2137823752}
@@ -9191,7 +9191,7 @@ PrefabInstance:
       objectReference: {fileID: 1753786972}
     - target: {fileID: 6133302039266126247, guid: c207bdfde40290643bab2ff39af1ce85, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6133302039266126247, guid: c207bdfde40290643bab2ff39af1ce85, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10565,7 +10565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018560795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.05, y: 2.62, z: -15.85}
+  m_LocalPosition: {x: -17.66, y: 2.62, z: -15.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2137823752}
@@ -11597,7 +11597,7 @@ MonoBehaviour:
   m_WayyPoints:
   - {fileID: 2018560796}
   - {fileID: 474330073}
-  m_Time: 20
+  m_Time: 60
 --- !u!1001 &7431030293272059922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11607,7 +11607,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7431030292921499404, guid: 389d8fe8ede0e4a4f8ff65ca8ad95da7, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7431030292921499404, guid: 389d8fe8ede0e4a4f8ff65ca8ad95da7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11790,6 +11790,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 321550988, guid: 4814bdb6a99a62e46b9514d7077d30af, type: 3}
+      propertyPath: m_Time
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 321550988, guid: 4814bdb6a99a62e46b9514d7077d30af, type: 3}
       propertyPath: m_WayyPoints.Array.size
       value: 2
