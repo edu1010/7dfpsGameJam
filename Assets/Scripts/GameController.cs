@@ -70,6 +70,9 @@ public class GameController : MonoBehaviour
     {
         m_Player.ResetLevel();
         RestartGame();
+        Time.timeScale = 1f;
+        HideCanvasGroup(m_PauseCanvas);
+        ShowCanvasGroup(m_GameHud);
 
     }
 
@@ -99,7 +102,6 @@ public class GameController : MonoBehaviour
     }
     public void ResumeGame()
     {
-        Debug.Log("hi");
         Time.timeScale = 1f;
         HideCanvasGroup(m_PauseCanvas);
         ShowCanvasGroup(m_GameHud);
