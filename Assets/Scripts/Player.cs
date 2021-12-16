@@ -381,13 +381,15 @@ public class Player : MonoBehaviour, IRestartGameElements
          if (other.tag == "Checkpoint")
         {
             m_CurrentCheckpoint = other.GetComponent<Checkpoint>();
-        } if (other.tag == "DeadZone")
+        } 
+        if (other.tag == "DeadZone")
         {
-            Debug.Log("cubo");
+           
             GameController.GetGameController().RestartGame();
         }
         if (other.tag == "Finish")
         {
+            Debug.Log("cuboF " + other.gameObject.name);
             GameController.GetGameController().FinishGameLevel();
         }
     }
